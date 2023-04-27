@@ -30,11 +30,6 @@ public class BookController {
         return bookService.getBookById(id);
     }
 
-    @PostMapping("/{id}/borrow")
-    public void borrowBook(@PathVariable Long id) {
-        bookService.borrowBook(id);
-    }
-
     @PostMapping("/{id}/return")
     public void returnBook(@PathVariable Long id) {
         bookService.returnBook(id);

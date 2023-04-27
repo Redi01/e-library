@@ -7,7 +7,6 @@ public interface BookService {
     List<BookEntity> getAllBooks();
     List<BookEntity> searchBooks(String query);
     BookEntity getBookById(Long id);
-    void borrowBook(Long id);
     void returnBook(Long id);
     void buyBook(Long id);
     void addBook(BookEntity book);

@@ -2,10 +2,6 @@ package com.ikubinfo.elibrary.domain.mapper;
 
 import com.ikubinfo.elibrary.domain.dto.order.OrderDTO;
 import com.ikubinfo.elibrary.domain.entity.Order;
-import org.springframework.security.core.userdetails.User;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class OrderMapper {
     public static OrderDTO toDto(Order o) {
@@ -13,6 +9,17 @@ public class OrderMapper {
                 .id(o.getId())
                 .customerName(o.getCustomerName())
                 .totalAmount(o.getTotalAmount())
+                .build();
+    }
+
+    public static Order toEntity(Order entity){
+
+        return Order.builder()
+                .id(entity.getId())
+                .books(entity.getBooks())
+                .createdAt(entity.getCreatedAt())
+                .totalAmount(entity.getTotalAmount())
+                .customerName(entity.getCustomerName())
                 .build();
     }
 
