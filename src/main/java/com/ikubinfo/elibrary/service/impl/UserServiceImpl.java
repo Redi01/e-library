@@ -3,6 +3,7 @@ package com.ikubinfo.elibrary.service.impl;
 import com.ikubinfo.elibrary.domain.dto.user.UserDTO;
 import com.ikubinfo.elibrary.domain.dto.user.UserUpdateDTO;
 import com.ikubinfo.elibrary.domain.exception.ResourceNotFoundException;
+import com.ikubinfo.elibrary.domain.mapper.UserMapper;
 import com.ikubinfo.elibrary.repository.UserRepository;
 import com.ikubinfo.elibrary.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -31,12 +32,12 @@ public class UserServiceImpl implements UserService, UserDetailsService{
     }
 
     @Override
-    public UserDTO registerUser(UserDTO req, String userRole) {
+    public UserDTO registerUser(UserDTO req, String Role) {
         return null;
     }
 
     @Override
-    public UserUpdateDTO updateUser(Integer id, UserUpdateDTO req) {
+    public UserUpdateDTO updateUser(Long id, UserUpdateDTO req) {
         return null;
     }
 

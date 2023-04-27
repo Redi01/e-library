@@ -25,7 +25,7 @@ public class UserController {
 
     @RolesAllowed("ADMIN")
     @PutMapping("/admin/{id}")
-    public ResponseEntity<UserUpdateDTO> updateUser(@PathVariable Integer id, @RequestBody UserUpdateDTO req){
+    public ResponseEntity<UserUpdateDTO> updateUser(@PathVariable Long id, @RequestBody UserUpdateDTO req){
         UserUpdateDTO u = userService.updateUser(id,req);
         return ResponseEntity.ok(u);
     }

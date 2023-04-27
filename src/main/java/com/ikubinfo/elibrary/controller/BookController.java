@@ -2,6 +2,7 @@ package com.ikubinfo.elibrary.controller;
 
 import com.ikubinfo.elibrary.domain.entity.BookEntity;
 import com.ikubinfo.elibrary.service.impl.BookServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/books")
+@RequiredArgsConstructor
 public class BookController {
     @Autowired
     private BookServiceImpl bookService;

@@ -8,7 +8,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 
 public interface UserService {
     com.ikubinfo.elibrary.domain.entity.User findById(Long id);
-    UserDTO registerUser(UserDTO req, String userRole);
-    UserUpdateDTO updateUser(Integer id, UserUpdateDTO req);
+    UserDTO registerUser(UserDTO req, String Role);
+    UserUpdateDTO updateUser(Long id, UserUpdateDTO req);
     User getUserFromToken(Jwt jwt);
 }
