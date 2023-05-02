@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class RoleDTO {
-
-    private Long id;
-    private String name;
+    private String role;
+    private boolean read;
+    private boolean create;
+    private boolean update;
 }

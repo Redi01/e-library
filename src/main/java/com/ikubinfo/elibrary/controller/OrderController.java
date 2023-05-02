@@ -1,6 +1,6 @@
 package com.ikubinfo.elibrary.controller;
 
-import com.ikubinfo.elibrary.domain.entity.Order;
+import com.ikubinfo.elibrary.domain.entity.OrderUI;
 import com.ikubinfo.elibrary.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +17,14 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
-        Order createdOrder = (Order) orderService.createOrder(order);
+    public ResponseEntity<OrderUI> createOrder(@RequestBody OrderUI order) {
+        OrderUI createdOrder = (OrderUI) orderService.createOrder(order);
         return new ResponseEntity<>(createdOrder, HttpStatus.CREATED);
     }
 
     @GetMapping("/{orderId}")
-    public ResponseEntity<Order> getOrderById(@PathVariable Long orderId) {
-        Order order = (Order) orderService.getOrderById(String.valueOf(orderId));
+    public ResponseEntity<OrderUI> getOrderById(@PathVariable Long orderId) {
+        OrderUI order = (OrderUI) orderService.getOrderById(String.valueOf(orderId));
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 

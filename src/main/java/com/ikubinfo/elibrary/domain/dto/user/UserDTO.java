@@ -14,8 +14,6 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Builder
 public class UserDTO {
-
-    private Long id;
     @NotNull(message = "Name is required")
     private String name;
     @NotNull(message = "Surname is required")
@@ -26,4 +24,7 @@ public class UserDTO {
     private String email;
     @NotNull(message = "Password is required")
     private String password;
+
+    @NotNull
+    private RoleDTO role;
 }

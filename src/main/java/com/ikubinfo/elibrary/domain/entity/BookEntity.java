@@ -22,7 +22,7 @@ public class BookEntity {
     private String description;
     private int quantity;
     @ManyToMany
-    private List<Order> orders;
+    private List<OrderUI> orders;
     @ManyToMany
     private List<User> user;
 

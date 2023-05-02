@@ -1,10 +1,10 @@
 package com.ikubinfo.elibrary.domain.mapper;
 
 import com.ikubinfo.elibrary.domain.dto.order.OrderDTO;
-import com.ikubinfo.elibrary.domain.entity.Order;
+import com.ikubinfo.elibrary.domain.entity.OrderUI;
 
 public class OrderMapper {
-    public static OrderDTO toDto(Order o) {
+    public static OrderDTO toDto(OrderUI o) {
         return OrderDTO.builder()
                 .id(o.getId())
                 .customerName(o.getCustomerName())
@@ -12,9 +12,9 @@ public class OrderMapper {
                 .build();
     }
 
-    public static Order toEntity(Order entity){
+    public static OrderUI toEntity(OrderUI entity){
 
-        return Order.builder()
+        return OrderUI.builder()
                 .id(entity.getId())
                 .books(entity.getBooks())
                 .createdAt(entity.getCreatedAt())

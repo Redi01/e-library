@@ -15,18 +15,18 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class OrderUI {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String customerName;
     private Double totalAmount;
-    @CreatedDate
+
     private LocalDateTime createdAt;
 
     @ManyToMany
     @JoinTable(
-            name = "order_book",
+            name = "OrderBook",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<BookEntity> books;

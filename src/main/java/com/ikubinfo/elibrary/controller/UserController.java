@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -16,19 +17,22 @@ import javax.annotation.security.RolesAllowed;
 public class UserController {
     private final UserService userService;
 
-    @RolesAllowed("ADMIN")
-    @PostMapping("/admin/{userRole}")
-    public ResponseEntity<UserDTO> registerUser(@RequestBody UserDTO req, @PathVariable String userRole){
-        UserDTO dto = userService.registerUser(req,userRole);
-        return ResponseEntity.ok(dto);
-    }
-
-    @RolesAllowed("ADMIN")
-    @PutMapping("/admin/{id}")
-    public ResponseEntity<UserUpdateDTO> updateUser(@PathVariable Long id, @RequestBody UserUpdateDTO req){
-        UserUpdateDTO u = userService.updateUser(id,req);
+    @PostMapping("/create")
+    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO){
+        UserDTO u = userService.registerUser(userDTO);
         return ResponseEntity.ok(u);
     }
 
+    @PostMapping("/updateUser/{id}")
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id,@RequestBody UserDTO userDTO){
+        UserDTO u = userService.updateUser(id, userDTO);
+        return ResponseEntity.ok(u);
     }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<UserDTO>> getAll(){
+        List<UserDTO> u = userService.findAll();
+        return ResponseEntity.ok(u);
+    }
+}
 
