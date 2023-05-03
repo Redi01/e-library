@@ -33,10 +33,37 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO registerUser(UserDTO userDTO) {
-        userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        String email = userDTO.getEmail();
+        if (userRepository.findByEmail(email).isPresent()) {
+            throw new ResourceNotFoundException("A user with this email address already exists");
+        }
+
         User user = UserMapper.toEntity(userDTO);
-        userRepository.save(user);
-        return userDTO;
+
+        String username = createUniqueUsername(email);
+        user.setUsername(username);
+        String encodedPassword = passwordEncoder.encode(userDTO.getPassword());
+        user.setPassword(encodedPassword);
+
+        user = userRepository.save(user);
+
+        return UserMapper.toDto(user);
+    }
+
+    private String createUniqueUsername(String email) {
+
+        String username = email.replaceAll("^([^@]+).*$", "$1");
+
+        username = username.toLowerCase().replaceAll("[^a-z0-9]", "");
+
+        String baseUsername = username;
+        int suffix = 1;
+        while (userRepository.findByUsername(username).isPresent()) {
+            username = baseUsername + suffix;
+            suffix++;
+        }
+
+        return username;
     }
 
     @Override

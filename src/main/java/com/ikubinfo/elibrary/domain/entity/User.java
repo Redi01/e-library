@@ -23,6 +23,7 @@ public class User implements UserDetails {
     private Long id;
     private  String name;
     private String surname;
+    private String username;
     private String email;
     private String password;
     @OneToOne(cascade = {CascadeType.ALL})

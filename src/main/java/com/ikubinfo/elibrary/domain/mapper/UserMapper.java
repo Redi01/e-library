@@ -11,7 +11,7 @@ public class UserMapper {
     public static UserDTO toDto(User u){
         return UserDTO.builder()
                 .name(u.getName())
-                .surname(u.getSurname())
+                .surname(u.getUsername())
                 .email(u.getEmail())
                 .role(RoleMapper.toDto(u.getRoleUI()))
                 .build();
