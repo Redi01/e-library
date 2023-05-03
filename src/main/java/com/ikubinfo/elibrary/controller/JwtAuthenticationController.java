@@ -3,7 +3,6 @@ package com.ikubinfo.elibrary.controller;
 import com.ikubinfo.elibrary.config.JwtTokenUtil;
 import com.ikubinfo.elibrary.domain.dto.auth.TokenDTO;
 import com.ikubinfo.elibrary.domain.model.JwtRequest;
-import com.ikubinfo.elibrary.domain.model.JwtResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;

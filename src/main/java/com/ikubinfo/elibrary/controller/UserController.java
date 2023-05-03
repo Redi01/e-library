@@ -1,14 +1,11 @@
 package com.ikubinfo.elibrary.controller;
 
 import com.ikubinfo.elibrary.domain.dto.user.UserDTO;
-import com.ikubinfo.elibrary.domain.dto.user.UserUpdateDTO;
 import com.ikubinfo.elibrary.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -33,6 +30,11 @@ public class UserController {
     public ResponseEntity<List<UserDTO>> getAll(){
         List<UserDTO> u = userService.findAll();
         return ResponseEntity.ok(u);
+    }
+    @DeleteMapping("deleteUser/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id){
+        userService.deleteUser(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
 

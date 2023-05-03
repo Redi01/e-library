@@ -11,9 +11,7 @@ import java.util.List;
 public interface UserService {
     User findById(Long id);
     UserDTO registerUser(UserDTO userDTO);
-    UserUpdateDTO updateUser(Long id, UserUpdateDTO req);
-    User getUserFromToken(Jwt jwt);
     List<UserDTO> findAll();
-
     UserDTO updateUser(Long userId, UserDTO userDTO);
+    Void deleteUser(Long id);
 }

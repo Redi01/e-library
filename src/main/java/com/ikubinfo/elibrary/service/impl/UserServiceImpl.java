@@ -40,16 +40,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserUpdateDTO updateUser(Long id, UserUpdateDTO req) {
-        return null;
-    }
-
-    @Override
-    public User getUserFromToken(Jwt jwt) {
-        return null;
-    }
-
-    @Override
     public List<UserDTO> findAll() {
         List<User> users = userRepository.findAll();
         return UserMapper.toDtos(users);
@@ -62,6 +52,16 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user.get());
         return userDTO;
     }
+
+    @Override
+    public Void deleteUser(Long id) {
+        userRepository.findById(id)
+                .ifPresentOrElse(u->userRepository.deleteById(id),()-> new ResourceNotFoundException(
+                        String.format("User with id %s not found",id)
+                ));
+        return null;
+    }
+
 
 }
 
