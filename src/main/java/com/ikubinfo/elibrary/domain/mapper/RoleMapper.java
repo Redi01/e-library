@@ -1,4 +1,4 @@
-package com.ikubinfo.elibrary.domain.mapper;
+/*package com.ikubinfo.elibrary.domain.mapper;
 
 import com.ikubinfo.elibrary.domain.dto.user.RoleDTO;
 import com.ikubinfo.elibrary.domain.entity.RoleUI;
@@ -39,4 +39,4 @@ public class RoleMapper {
         roleUI.setUserRole(roleDTO.getRole());
         return roleUI;
     }
-}
+}*/

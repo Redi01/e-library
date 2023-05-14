@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class BookDTO {
-    private Long id;
     private String title;
     private String author;
     private String description;
-    private int quantity;
+    private Integer quantity;
+    private Integer price;
 }

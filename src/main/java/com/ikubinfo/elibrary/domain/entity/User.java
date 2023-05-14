@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 @Builder
 @NoArgsConstructor
-@Table(name="USER")
+@Table(name="Users")
 @AllArgsConstructor
 public class User implements UserDetails {
     @Id
@@ -23,9 +23,12 @@ public class User implements UserDetails {
     private Long id;
     private  String name;
     private String surname;
-    private String username;
     private String email;
     private String password;
+//    @Enumerated(EnumType.STRING)
+//    private UserRole role;
+    private String NumUnreturnedBooks;
+
     @OneToOne(cascade = {CascadeType.ALL})
     private OrderUI order;
     @OneToOne(cascade = {CascadeType.ALL})

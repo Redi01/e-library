@@ -19,12 +19,10 @@ public class UserDTO {
     @NotNull(message = "Surname is required")
     @NotEmpty(message ="Surname cannot be empty")
     private String surname;
-    //Username do te vendoset automatikisht nga aplikacioni
     @NotNull(message = "Email is required")
     @Email(message = "Email is not valid format")
     private String email;
     @NotNull(message = "Password is required")
     private String password;
-    @NotNull
     private RoleDTO role;
 }

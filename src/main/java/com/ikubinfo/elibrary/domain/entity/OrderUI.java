@@ -15,13 +15,13 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "Orders")
 public class OrderUI {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String customerName;
     private Double totalAmount;
-
     private LocalDateTime createdAt;
 
     @ManyToMany
@@ -31,5 +31,4 @@ public class OrderUI {
             inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<BookEntity> books;
 
-    private boolean isPaid;
 }

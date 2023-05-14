@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -14,18 +15,13 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    @PostMapping("/create")
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO){
-        UserDTO u = userService.registerUser(userDTO);
-        return ResponseEntity.ok(u);
-    }
-
     @PostMapping("/updateUser/{id}")
     public ResponseEntity<UserDTO> updateUser(@PathVariable Long id,@RequestBody UserDTO userDTO){
         UserDTO u = userService.updateUser(id, userDTO);
         return ResponseEntity.ok(u);
     }
 
+    @RolesAllowed("ADMIN")
     @GetMapping("/getAll")
     public ResponseEntity<List<UserDTO>> getAll(){
         List<UserDTO> u = userService.findAll();
