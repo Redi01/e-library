@@ -1,19 +1,15 @@
 package com.ikubinfo.elibrary.service.impl;
 
 import com.ikubinfo.elibrary.domain.dto.user.UserDTO;
-import com.ikubinfo.elibrary.domain.entity.RoleUI;
 import com.ikubinfo.elibrary.domain.entity.User;
-import com.ikubinfo.elibrary.domain.entity.UserRole;
 import com.ikubinfo.elibrary.domain.exception.ResourceNotFoundException;
 import com.ikubinfo.elibrary.domain.mapper.UserMapper;
-import com.ikubinfo.elibrary.repository.RoleRepository;
 import com.ikubinfo.elibrary.repository.UserRepository;
 import com.ikubinfo.elibrary.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -21,8 +17,6 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-
-    private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -39,17 +33,12 @@ public class UserServiceImpl implements UserService {
         Optional<User> doesUserExist = userRepository.findByEmail(userDTO.getEmail());
         if (!doesUserExist.isPresent()){
             User u = UserMapper.toEntity(userDTO);
-            String roleOfNewUser = String.valueOf(userRole != null ? UserRole.fromValue(userRole) : UserRole.USER);
-            RoleUI role = roleRepository.findByUserRole(roleOfNewUser);
-            u.setRoleUI(role);
             u.setPassword(passwordEncoder.encode(userDTO.getPassword()));
             u = userRepository.save(u);
             return UserMapper.toDto(u);
         } else {
             throw new ResourceNotFoundException("A user with this email address already exists");
         }
-
-
     }
     @Override
     public List<UserDTO> findAll() {

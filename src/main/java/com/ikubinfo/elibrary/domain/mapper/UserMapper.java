@@ -13,7 +13,6 @@ public class UserMapper {
                 .name(u.getName())
                 .surname(u.getSurname())
                 .email(u.getEmail())
-               /* .role(RoleMapper.toDto(u.getRoleUI()))*/
                 .build();
 
     }
@@ -32,7 +31,6 @@ public class UserMapper {
                 .surname(u.getSurname())
                 .email(u.getEmail())
                 .password(u.getPassword())
-                /*.roleUI(RoleMapper.toEntity(u.getRole()))*/
                 .build();
     }
     public static UserUpdateDTO toUpdateDto(User u){
@@ -47,7 +45,6 @@ public class UserMapper {
         u.setName(req.getName());
         u.setSurname(req.getSurname());
         u.setEmail(req.getEmail());
-        /*u.setRoleUI(RoleMapper.buildUpdateUserRole(u.getRoleUI(), req.getRole()));*/
         return u;
     }
 }

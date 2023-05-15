@@ -25,14 +25,7 @@ public class User implements UserDetails {
     private String surname;
     private String email;
     private String password;
-//    @Enumerated(EnumType.STRING)
-//    private UserRole role;
     private String NumUnreturnedBooks;
-
-    @OneToOne(cascade = {CascadeType.ALL})
-    private OrderUI order;
-    @OneToOne(cascade = {CascadeType.ALL})
-    private RoleUI roleUI;
     @ManyToMany
     @JoinTable(
             name = "user_book",

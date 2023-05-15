@@ -10,10 +10,8 @@ import com.ikubinfo.elibrary.repository.BookRepository;
 import com.ikubinfo.elibrary.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,8 +21,6 @@ public class BookServiceImpl implements BookService {
 @Autowired
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
-    /*private final BorrowRepository borrowRepository;*/
-
 
     public List<BookDTO> getAllBooks() {
         List<BookEntity> bookEntities = bookRepository.findAll();
@@ -49,13 +45,16 @@ public class BookServiceImpl implements BookService {
         if (bookEntity == null) {
             throw new BookNotFoundException("Book with id " + id + " not found");
         }
+        bookEntity.setBorrowerName("");
+        bookEntity.setBorrowDate(null);
         bookEntity.setQuantity(bookEntity.getQuantity() + 1);
         bookRepository.save(bookEntity);
     }
 
     @Override
-    public void borrowBook(Long id, String borrowerName, LocalDateTime borrowDate, String username) {
-        BookEntity bookEntity = bookRepository.findById(id).orElse(null);
+    public void borrowBook(Long id, String borrowerName, LocalDate borrowDate, String username) {
+
+        BookEntity bookEntity = bookRepository.findById(id).get();
         if (bookEntity == null) {
             throw new BookNotFoundException("Book with id " + id + " not found");
         }
@@ -66,13 +65,10 @@ public class BookServiceImpl implements BookService {
         bookEntity.setQuantity(bookEntity.getQuantity() - 1);
         bookEntity.setBorrowerName(borrowerName);
         bookEntity.setBorrowDate(borrowDate);
-        bookEntity.setBorrowedBy(username);
+
 
         bookRepository.save(bookEntity);
     }
-
-
-
     public void addBook(BookDTO bookDTO) {
         if (bookDTO == null) {
             throw new IllegalArgumentException("Book cannot be null");
@@ -93,19 +89,6 @@ public class BookServiceImpl implements BookService {
 
     }
 
-
-
-  /*  @Override
-    @Scheduled(cron = "0 0 0 * * *") // ekzekutohet çdo ditë në mesnatë
-    public void checkUnreturnedBooks() {
-        List<BorrowEntity> unreturnedBorrows = borrowRepository.findUnreturnedBorrows();
-
-        // përditëso numrin e librave të palështruara për secilin përdorues
-        for (BorrowEntity borrow : unreturnedBorrows) {
-            User user = borrow.getUserBorrowedTo();
-            user.setNumUnreturnedBooks(user.getNumUnreturnedBooks() + 1);
-            borrowRepository.save(borrow);
-        }*/
 
 
 

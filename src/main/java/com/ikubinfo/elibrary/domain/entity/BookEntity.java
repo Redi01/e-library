@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Books")
+@Table(name = "BookEntity")
 public class BookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +25,7 @@ public class BookEntity {
     private Integer quantity;
     private Integer price;
     private String borrowerName;
-    private String borrowedBy;
-    private LocalDateTime borrowDate;
-    @ManyToMany(cascade = {CascadeType.ALL})
-    private List<OrderUI> orders;
+    private LocalDate borrowDate;
     @ManyToMany
     private List<User> user;
 

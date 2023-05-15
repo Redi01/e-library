@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import javax.annotation.security.RolesAllowed;
+
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -21,7 +21,6 @@ public class UserController {
         return ResponseEntity.ok(u);
     }
 
-    @RolesAllowed("ADMIN")
     @GetMapping("/getAll")
     public ResponseEntity<List<UserDTO>> getAll(){
         List<UserDTO> u = userService.findAll();

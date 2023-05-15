@@ -24,5 +24,4 @@ public class UserDTO {
     private String email;
     @NotNull(message = "Password is required")
     private String password;
-    private RoleDTO role;
 }
